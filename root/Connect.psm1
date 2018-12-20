@@ -1,5 +1,5 @@
 $Path = Split-Path -Parent $PSScriptRoot
-. "$Path\Private\Common.ps1"
+. "$Path\root\Common.ps1"
 
 function Connect-EposNowAccount {
 <#
@@ -28,7 +28,7 @@ function Connect-EposNowAccount {
     )
 
     Begin {
-
+        
     }
     Process {
         Try {
@@ -42,5 +42,3 @@ function Connect-EposNowAccount {
         }
     }
 }
-
-Export-ModuleMember Connect-EposNowAccount

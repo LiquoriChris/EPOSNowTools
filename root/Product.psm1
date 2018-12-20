@@ -1,5 +1,5 @@
 $Path = Split-Path -Parent $PSScriptRoot
-. "$Path\Private\Common.ps1"
+. "$Path\root\Common.ps1"
 
 function Get-EposNowProduct {
 <#
@@ -166,6 +166,3 @@ function Update-EposNowProduct {
         return $Response
     }
 }
-
-
-Export-ModuleMember Get-EposNowProduct,Remove-EposNowProduct,Update-EposNowProduct
