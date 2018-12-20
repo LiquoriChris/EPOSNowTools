@@ -42,7 +42,7 @@ function _ApiCall {
         [string]$Method,
         [object]$Body,
         [string]$InFile,
-        [string]$ContentType = 'application/json',
+        [string]$ContentType,
         [string]$Url
     )
     

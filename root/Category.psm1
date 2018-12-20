@@ -1,24 +1,24 @@
 $Path = Split-Path -Parent $PSScriptRoot
 . "$Path\root\Common.ps1"
 
-function Get-EposNowProduct {
+function Get-EposNowCategory {
 <#
 	.Synopsis
-		Get products from EPOS Now API.
+		Get Categorys from EPOS Now API.
 
 	.Description
-        This function will return all products in the EPOS system except when using the Id variable
-        which will return the specified products matching the unique Id.
+        This function will return all Categorys in the EPOS system except when using the Id variable
+        which will return the specified Categorys matching the unique Id.
 
     .PARAMETER Id
-        int parameter. Product Id number
+        int parameter. Category Id number
 
 	.Example
-        Example 1: Return all products
-        PS C:\> Get-EposNowProduct
+        Example 1: Return all Categorys
+        PS C:\> Get-EposNowCategory
 
-        Example 2: Return products from EPOS Now with unique Id
-        PS C:\> Get-EposNowProduct -Id 348472,312384
+        Example 2: Return Categorys from EPOS Now with unique Id
+        PS C:\> Get-EposNowCategory -Id 348472,312384
 #>
 
     [CmdletBinding()]
@@ -36,7 +36,7 @@ function Get-EposNowProduct {
     Process {
         Try {
             $Params = @{
-                Area = 'product'
+                Area = 'category'
             }
             if ($Id) {
                 $Params.Id = $Id
@@ -55,23 +55,23 @@ function Get-EposNowProduct {
     }
 }
 
-function Remove-EposNowProduct {
+function Remove-EposNowCategory {
 <#
     .Synopsis
-        Remove products from EPOS Now API.
+        Remove Categorys from EPOS Now API.
 
     .Description
-        This function will remove a product from the EPOS Now system using the unique Id number
+        This function will remove a Category from the EPOS Now system using the unique Id number
 
     .PARAMETER Id
-        int mandatory parameter. Product Id number
+        int mandatory parameter. Category Id number
 
     .Example
-        Example 1: Delete a product
-        PS C:\> Remove-EposNowProduct -Id 348472
+        Example 1: Delete a Category
+        PS C:\> Remove-EposNowCategory -Id 348472
 
-        Example 2: Delete products using the pipeline
-        PS C:\> Get-EposNowProduct -Id 348472,312384 |Remove-EposNowProduct
+        Example 2: Delete Categorys using the pipeline
+        PS C:\> Get-EposNowCategory -Id 348472 |Remove-EposNowProduct
 #>
 
     [CmdletBinding()]
@@ -87,12 +87,12 @@ function Remove-EposNowProduct {
 
     }
     Process {
+        $Body = @{
+            Id = $Id
+        } |ConvertTo-JsonEx -AsArray
         Try {
-            $Body = @{
-                Id = $Id
-            } |ConvertTo-JsonEx -AsArray
             $Params = @{
-                Area = 'product'
+                Area = 'category'
                 Body = $Body
                 Method = 'Delete'
                 ContentType = 'application/json'
@@ -109,23 +109,23 @@ function Remove-EposNowProduct {
     }
 }
 
-function Update-EposNowProduct {
+function Update-EposNowCategory {
 <#
     .Synopsis
-        Updates products from EPOS Now API.
+        Updates Categorys from EPOS Now API.
 
     .Description
-        This function will update a product from the EPOS Now system
+        This function will update a Category from the EPOS Now system
 
     .PARAMETER InFile
-        string InFile parameter. Json file to update product.
+        string InFile parameter. Json file to update Category.
 
     .PARAMETER Body
         string Body parameter. Json body.
 
     .Example
-        Example 1: Update a product
-        PS C:\> Update-EposNowProduct -Body $Body
+        Example 1: Update a Category
+        PS C:\> Update-EposNowCategory -Body $Body
 
     .NOTES 
         If using body parameter. convert body using ConvertTo-JsonEx -AsArray to put in correct formet
@@ -146,7 +146,7 @@ function Update-EposNowProduct {
     Process {
         Try {
             $Params = @{
-                Area = 'product'
+                Area = 'category'
                 ContentType = 'application/json'
                 Method = 'Put'
                 ErrorAction = 'Stop'
@@ -168,23 +168,23 @@ function Update-EposNowProduct {
     }
 }
 
-function New-EposNowProduct {
+function New-EposNowCategory {
 <#
     .Synopsis
-        Creates products from EPOS Now API.
+        Creates Categorys from EPOS Now API.
 
     .Description
-        This function will Create a product from the EPOS Now system
+        This function will Create a Category from the EPOS Now system
 
     .PARAMETER InFile
-        string InFile parameter. Json file to Create product.
+        string InFile parameter. Json file to Create Category.
 
     .PARAMETER Body
         string Body parameter. Json body.
 
     .Example
-        Example 1: Create a product
-        PS C:\> Create-EposNowProduct -Body $Body
+        Example 1: Create a Category
+        PS C:\> Create-EposNowCategory -Body $Body
 
     .NOTES 
         If using body parameter. convert body using ConvertTo-JsonEx -AsArray to put in correct formet
@@ -205,7 +205,7 @@ function New-EposNowProduct {
     Process {
         Try {
             $Params = @{
-                Area = 'product'
+                Area = 'category'
                 ContentType = 'application/json'
                 Method = 'Post'
                 ErrorAction = 'Stop'
