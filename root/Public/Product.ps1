@@ -55,4 +55,117 @@ function Get-EposNowProduct {
     }
 }
 
-Export-ModuleMember Get-EposNowProduct
+function Remove-EposNowProduct {
+<#
+    .Synopsis
+        Remove products from EPOS Now API.
+
+    .Description
+        This function will remove a product from the EPOS Now system using the unique Id number
+
+    .PARAMETER Id
+        int mandatory parameter. Product Id number
+
+    .Example
+        Example 1: Delete a product
+        PS C:\> Delete-EposNowProduct -Id 348472
+
+        Example 2: Delete products using the pipeline
+        PS C:\> Get-EposNowProduct -Id 348472,312384 |Remove-EposNowProduct
+#>
+
+    [CmdletBinding()]
+    param (
+        [Parameter(Mandatory,
+                   ValueFromPipelineByPropertyName,
+                   ValueFromPipeline,
+                   Position = 0)]
+        [int]$Id
+    )
+
+    Begin {
+
+    }
+    Process {
+        Try {
+            $Params = @{
+                Area = 'product'
+                Method = 'Delete'
+                ErrorAction = 'Stop'
+            }
+            $Response = _APICall @Params
+        }
+        Catch {
+            throw $_
+        }
+    }
+    End {
+        return $Response
+    }
+}
+
+function Update-EposNowProduct {
+<#
+    .Synopsis
+        Updates products from EPOS Now API.
+
+    .Description
+        This function will update a product from the EPOS Now system
+
+    .PARAMETER InFile
+        string InFile parameter. Json file to update product.
+
+    .PARAMETER Body
+        string Body parameter. Json body.
+
+    .Example
+        Example 1: Update a product
+        PS C:\> Delete-EposNowProduct -Id 348472
+
+        Example 2: Delete products using the pipeline
+        PS C:\> Get-EposNowProduct -Id 348472,312384 |Remove-EposNowProduct
+
+    .NOTES 
+        If using body parameter. convert body using ConvertTo-JsonEx -AsArray to put in correct formet
+#>
+
+    [CmdletBinding()]
+    param (
+        [Parameter(ValueFromPipeline,
+                    Position = 0)]
+        [string]$InFile,
+        [Parameter(ValueFromPipeline,
+                    Position = 1)]
+        [string]$Body
+    )
+
+    Begin {
+
+    }
+    Process {
+        Try {
+            $Params = @{
+                Area = 'product'
+                ContentType = 'application/json'
+                Method = 'Put'
+                ErrorAction = 'Stop'
+            }
+            if ($Body) {
+                $Params.Body = $Body
+            }
+            if ($InFile) {
+                $Params.InFile = $InFile
+            }   
+            $Response = _APICall @Params
+        }
+        Catch {
+            throw $_
+        }
+    }
+    End {
+        return $Response
+    }
+}
+
+
+Export-ModuleMember Get-EposNowProduct,Remove-EposNowProduct,Update-EposNowProduct

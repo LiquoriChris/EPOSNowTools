@@ -8,7 +8,7 @@ function _RequestUri {
         [Parameter(Position = 1)]
         [int]$Id,
         [Parameter(Position = 2)]
-        [string]$Page
+        [int]$Page
     )
 
     Begin {
@@ -22,8 +22,8 @@ function _RequestUri {
         if ($Id) {
             $UrlBuilder.Append("/$Id") |Out-Null
         }
-        if ($Resource) {
-            $UrlBuilder.Append("?page=$Page")
+        if ($Page) {
+            $UrlBuilder.Append("?page=$Page") |Out-Null
         }
         $Url = $UrlBuilder.ToString()
     }
@@ -41,6 +41,7 @@ function _ApiCall {
         [int]$Page,
         [string]$Method,
         [object]$Body,
+        [string]$InFile,
         [string]$ContentType = 'application/json',
         [string]$Url
     )
@@ -52,7 +53,7 @@ function _ApiCall {
         Try {
             if (!$Url) {
                 $UrlBuildParams = @{} + $PSBoundParameters
-                $Remove = 'Method','Body','ContentType','Url'
+                $Remove = 'Method','Body','ContentType','InFile'
                 foreach ($Item in $Remove) {
                     $UrlBuildParams.Remove($Item) |Out-Null
                 }
@@ -61,7 +62,7 @@ function _ApiCall {
             $Params = $PSBoundParameters
             $Params.Uri = $Url
             $Params.Headers = @{Authorization = "Basic $env:Access_Token"}
-            $Remove = 'Area','Id','Url','Page'
+            $Remove = 'Area','Id','Page','Url'
             foreach ($Item in $Remove) {
                 $Params.Remove($Item) |Out-Null
             }
