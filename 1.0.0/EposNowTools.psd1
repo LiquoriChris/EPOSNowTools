@@ -12,7 +12,7 @@
     RootModule = ''
     
     # Version number of this module.
-    ModuleVersion = '1.0'
+    ModuleVersion = '1.0.0'
     
     # Supported PSEditions
     # CompatiblePSEditions = @()
@@ -21,13 +21,13 @@
     GUID = 'c9517a66-e533-406b-a1ee-839cb448687f'
     
     # Author of this module
-    Author = 'chris'
+    Author = 'Chris Liquori'
     
     # Company or vendor of this module
-    CompanyName = 'Unknown'
+    CompanyName = ''
     
     # Copyright statement for this module
-    Copyright = '(c) 2018 chrisl. All rights reserved.'
+    Copyright = '(c) 2018 Chris. All rights reserved.'
     
     # Description of the functionality provided by this module
     # Description = ''
