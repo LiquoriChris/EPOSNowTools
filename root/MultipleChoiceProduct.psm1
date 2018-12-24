@@ -299,21 +299,21 @@ function Add-EposNowProductToMultipleChoiceProductGroup {
         Add product to a multiple choice product group
 
     .Description
-        This function will add a product to a  multiple choice product groups using the product Id and group Id
+        This function will add a product to a multiple choice product groups using the product Id and group Id
 
-    .PARAMETER Id
-        int parameter. Multiple choice product group Id
+    .PARAMETER Body
+        string parameter. Json body to update prodcuts in a multiple choice product group
 
-    .PARAMETER ProductId
-        int parameter. Product Id to add a multiple choice product group
+    .PARAMETER InFile
+        string InFile. Path to json file to update products in a multiple choice product group
 
     .Example
-        Example 1: Add a product to a  multiple choice product group
-        PS C:\> Add-EposNowMultipleChoiceProductGroupToProduct -Id 4549384 -ProductId 13433
+        Example 1: Add a product to a multiple choice product group using body
+        PS C:\> Add-EposNowProductToMultipleChoiceProductGroup -Body $Body
 
-        Example 2: Add a product to a multiple choice product group using the pipeline
-        PS C:\> Get-EposNowMultipleChoiceProductGroup -Id 439582 |
-        Add-EposNowMultipleChoiceProductGroupToProduct -ProductId 1293432
+        Example 2: Add a product to a multiple choice product group using InFile
+        PS C:\> $Get = Get-EposNowMultipleChoiceProdctGroup -Id 14331 |Set-Content C:\temp\mcpg.json
+                Add-EposNowProductToMultipleChoiceProductGroup -InFile C:\temp\mcpg.json
 #>
 
     [CmdletBinding()]
