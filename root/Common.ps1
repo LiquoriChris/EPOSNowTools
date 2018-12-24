@@ -6,8 +6,10 @@ function _RequestUri {
                    Position = 0)]
         [string]$Area,
         [Parameter(Position = 1)]
-        [int]$Id,
+        [string]$Resource,
         [Parameter(Position = 2)]
+        [int]$Id,
+        [Parameter(Position = 3)]
         [int]$Page
     )
 
@@ -18,6 +20,9 @@ function _RequestUri {
     Process {
         if ($Area) {
             $UrlBuilder.Append("/$Area") |Out-Null
+        }
+        if ($Resource) {
+            $UrlBuilder.Append("/$Resource") |Out-Null
         }
         if ($Id) {
             $UrlBuilder.Append("/$Id") |Out-Null
@@ -37,6 +42,7 @@ function _ApiCall {
     param (
         [Parameter(Mandatory)]
         [string]$Area,
+        [string]$Resource,
         [int]$Id,
         [int]$Page,
         [string]$Method,
@@ -62,7 +68,7 @@ function _ApiCall {
             $Params = $PSBoundParameters
             $Params.Uri = $Url
             $Params.Headers = @{Authorization = "Basic $env:Access_Token"}
-            $Remove = 'Area','Id','Page','Url'
+            $Remove = 'Area','Id','Page','Url','Resource'
             foreach ($Item in $Remove) {
                 $Params.Remove($Item) |Out-Null
             }
