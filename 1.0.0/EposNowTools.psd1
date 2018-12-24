@@ -21,16 +21,16 @@
     GUID = 'c9517a66-e533-406b-a1ee-839cb448687f'
     
     # Author of this module
-    Author = 'Chris Liquori'
+    Author = '@pwshliquori'
     
     # Company or vendor of this module
-    CompanyName = ''
+    CompanyName = 'https://dev.azure.com/pwshliquori/EposNowTools'
     
     # Copyright statement for this module
     Copyright = '(c) 2018 Chris. All rights reserved.'
     
     # Description of the functionality provided by this module
-    # Description = ''
+    Description = 'EPOS Now point of sale PowerShell module. API app is required from the app store in order to run the module and functions.'
     
     # Minimum version of the Windows PowerShell engine required by this module
     # PowerShellVersion = ''
