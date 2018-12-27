@@ -89,7 +89,7 @@ function Remove-EposNowCategory {
     Process {
         $Body = @{
             Id = $Id
-        } |ConvertTo-JsonEx -AsArray
+        } |ConvertTo-Json -AsArray
         Try {
             $Params = @{
                 Area = 'category'
@@ -128,7 +128,7 @@ function Update-EposNowCategory {
         PS C:\> Update-EposNowCategory -Body $Body
 
     .NOTES 
-        If using body parameter. convert body using ConvertTo-JsonEx -AsArray to put in correct formet
+        If using body parameter. convert body using ConvertTo-Json -AsArray to put in correct formet
 #>
 
     [CmdletBinding()]
@@ -187,7 +187,7 @@ function New-EposNowCategory {
         PS C:\> Create-EposNowCategory -Body $Body
 
     .NOTES 
-        If using body parameter. convert body using ConvertTo-JsonEx -AsArray to put in correct formet
+        If using body parameter. convert body using ConvertTo-Json -AsArray to put in correct formet
 #>
 
     [CmdletBinding()]

@@ -69,7 +69,8 @@
     NestedModules = @('root\Connect.psm1',
         'root\Product.psm1',
         'root\Category.psm1',
-        'root\MultipleChoiceProduct.psm1')
+        'root\MultipleChoiceProduct.psm1',
+        'root\Refund.psm1')
     
     # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
     FunctionsToExport = 'Connect-EposNowAccount',
@@ -83,8 +84,10 @@
         'Get-EposNowMultipleChoiceProdctByProductId',
         'Get-EposNowMultipleChoiceProduct',
         'Add-EposNowMultipleChoiceProductGroupToProduct',
-        'Add-EposNowProductToMultipleChoiceProductGroup',
-        'Remove-EposNowMultipleChoiceProductGroupToProduct'
+        'Update-EposNowMultipleChoiceProductGroup',
+        'Remove-EposNowMultipleChoiceProductGroupToProduct',
+        'Get-EposNowRefundReason',
+        'Remove-EposNowRefundReason'
     
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
     # CmdletsToExport = '*'

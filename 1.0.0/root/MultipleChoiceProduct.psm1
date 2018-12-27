@@ -43,7 +43,7 @@ function Get-EposNowMultipleChoiceProdctGroup {
             else {
                 $Params.Resource = 'Group'
             }
-            $Reponse = _APICall @Params |ConvertTo-JsonEx -AsArray -Depth 100
+            $Reponse = _APICall @Params |ConvertTo-Json -AsArray -Depth 100
         }
         Catch {
             throw $_
@@ -450,7 +450,7 @@ function Remove-EposNowMultipleChoiceProductGroup {
         Try {
             $Body = @{
                 id = $Id
-            } |ConvertTo-JsonEx -AsArray
+            } |ConvertTo-Json -AsArray
             $Params = @{
                 Area = 'MultipleChoiceProduct'
                 Resource = 'Group'

@@ -90,7 +90,7 @@ function Remove-EposNowProduct {
         Try {
             $Body = @{
                 Id = $Id
-            } |ConvertTo-JsonEx -AsArray
+            } |ConvertTo-Json -AsArray
             $Params = @{
                 Area = 'product'
                 Body = $Body
@@ -128,7 +128,7 @@ function Update-EposNowProduct {
         PS C:\> Update-EposNowProduct -Body $Body
 
     .NOTES 
-        If using body parameter. convert body using ConvertTo-JsonEx -AsArray to put in correct formet
+        If using body parameter. convert body using ConvertTo-Json -AsArray to put in correct formet
 #>
 
     [CmdletBinding()]
@@ -187,7 +187,7 @@ function New-EposNowProduct {
         PS C:\> Create-EposNowProduct -Body $Body
 
     .NOTES 
-        If using body parameter. convert body using ConvertTo-JsonEx -AsArray to put in correct formet
+        If using body parameter. convert body using ConvertTo-Json -AsArray to put in correct formet
 #>
 
     [CmdletBinding()]
