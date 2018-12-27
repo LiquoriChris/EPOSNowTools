@@ -353,3 +353,119 @@ function Add-EposNowProductToMultipleChoiceProductGroup {
         return $Reponse
     }
 }
+
+function Update-EposNowMultipleChoiceProductGroup {
+<#
+    .Synopsis
+        Update product to a multiple choice product group
+
+    .Description
+        This function will update a product to a multiple choice product groups using the product Id and group Id
+
+    .PARAMETER Body
+        string parameter. Json body to update prodcuts in a multiple choice product group
+
+    .PARAMETER InFile
+        string InFile. Path to json file to update products in a multiple choice product group
+
+    .Example
+        Example 1: Update a product to a multiple choice product group using body
+        PS C:\> Update-EposNowProductToMultipleChoiceProductGroup -Body $Body
+
+        Example 2: Update a product to a multiple choice product group using InFile
+        PS C:\> $Get = Get-EposNowMultipleChoiceProdctGroup -Id 14331 |Set-Content C:\temp\mcpg.json
+                Update-EposNowProductToMultipleChoiceProductGroup -InFile C:\temp\mcpg.json
+#>
+
+    [CmdletBinding()]
+    Param (
+        [Parameter(ValueFromPipeline,
+                    Position = 0)]
+        [string]$InFile,
+        [Parameter(Position = 1)]
+        [string]$Body
+    )
+
+    Begin {
+
+    }
+    Process {
+        Try {
+            $Params = @{
+                Area = 'MultipleChoiceProduct'
+                Resource = 'Group'
+                Method = 'Put'
+                ContentType = 'application/json'
+                ErrorAction = 'Stop'
+            }
+            if ($InFile) {
+                $Params.InFile = $InFile
+            }
+            if ($Body) {
+                $Params.Body = $Body
+            }
+            $Reponse = _APICall @Params
+        }
+        Catch {
+            throw $_
+        }
+    }
+    End {
+        return $Reponse
+    }
+}
+
+function Remove-EposNowMultipleChoiceProductGroup {
+<#
+    .Synopsis
+        Remove product to a multiple choice product group
+
+    .Description
+        This function will Remove a product to a multiple choice product groups using the product Id and group Id
+
+    .PARAMETER Id
+        Mandatory int parameter. Unique id number of the multiple choice product group to remove
+
+    .Example
+        Example 1: Remove a multiple choice product group
+        PS C:\> Remove-EposNowProductToMultipleChoiceProductGroup -Id
+
+        Example 2: Remove a multiple choice product group using pipeline
+        PS C:\> Get-EposNowMultipleChoiceProductGroup -Id 34920 |Remove-EposNowMultiplieChoiceProductGroup
+#>
+
+    [CmdletBinding()]
+    Param (
+        [Parameter(Mandatory,
+                   ValueFromPipelineByPropertyName,
+                   ValueFromPipeline,
+                   Position = 0)]
+        [int]$Id
+    )
+
+    Begin {
+
+    }
+    Process {
+        Try {
+            $Body = @{
+                id = $Id
+            } |ConvertTo-JsonEx -AsArray
+            $Params = @{
+                Area = 'MultipleChoiceProduct'
+                Resource = 'Group'
+                Body = $Body
+                Method = 'Delete'
+                ContentType = 'application/json'
+                ErrorAction = 'Stop'
+            }
+            $Reponse = _APICall @Params
+        }
+        Catch {
+            throw $_
+        }
+    }
+    End {
+        return $Reponse
+    }
+}
