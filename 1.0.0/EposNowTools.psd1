@@ -12,7 +12,7 @@
     RootModule = ''
     
     # Version number of this module.
-    ModuleVersion = '1.0.0'
+    ModuleVersion = '1.1.0'
     
     # Supported PSEditions
     # CompatiblePSEditions = @()
@@ -70,16 +70,20 @@
         'root\Product.psm1',
         'root\Category.psm1',
         'root\MultipleChoiceProduct.psm1',
-        'root\Refund.psm1')
+        'root\Refund.psm1',
+        'root\Transaction.psm1',
+        'root\Discount.psm1')
     
     # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
     FunctionsToExport = 'Connect-EposNowAccount',
         'Get-EposNowProduct',
         'Update-EposNowProduct',
         'Remove-EposNowProduct',
+        'New-EposNowProduct',
         'Get-EposNowCategory',
         'Update-EposNowCategory',
         'Remove-EposNowCategory',
+        'New-EposNowCategory',
         'Get-EposNowMultipleChoiceProdctGroup',
         'Get-EposNowMultipleChoiceProdctByProductId',
         'Get-EposNowMultipleChoiceProduct',
@@ -87,7 +91,11 @@
         'Update-EposNowMultipleChoiceProductGroup',
         'Remove-EposNowMultipleChoiceProductGroupToProduct',
         'Get-EposNowRefundReason',
-        'Remove-EposNowRefundReason'
+        'Remove-EposNowRefundReason',
+        'Get-EposNowTransaction',
+        'Get-EposNowDiscountReason',
+        'Remove-EposNowDiscountReason',
+        'New-EposNowDiscountReason'
     
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
     # CmdletsToExport = '*'
