@@ -33,7 +33,7 @@
     Description = 'EPOS Now point of sale PowerShell module. API app is required from the app store in order to run the module and functions.'
     
     # Minimum version of the Windows PowerShell engine required by this module
-    # PowerShellVersion = ''
+    PowerShellVersion = '6.0'
     
     # Name of the Windows PowerShell host required by this module
     # PowerShellHostName = ''
