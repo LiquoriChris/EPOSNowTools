@@ -72,7 +72,8 @@
         'root\MultipleChoiceProduct.psm1',
         'root\Refund.psm1',
         'root\Transaction.psm1',
-        'root\Discount.psm1')
+        'root\Discount.psm1',
+        'root\PopupNote.psm1')
     
     # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
     FunctionsToExport = 'Connect-EposNowAccount',
@@ -95,7 +96,10 @@
         'Get-EposNowTransaction',
         'Get-EposNowDiscountReason',
         'Remove-EposNowDiscountReason',
-        'New-EposNowDiscountReason'
+        'New-EposNowDiscountReason',
+        'Get-EposNowPopupNote',
+        'Remove-EposNowPopupNote',
+        'New-EposNowPopupNote'
     
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
     # CmdletsToExport = '*'
